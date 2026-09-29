@@ -1,0 +1,4 @@
+"use client";
+import { Menu, ShoppingBag, X } from "lucide-react"; import { useEffect,useState } from "react";
+export function Logo(){return <a className="logo" href="#inicio"><b>RENATO</b><span>100% LANCHES</span></a>}
+export default function Navbar(){const [open,setOpen]=useState(false),[scrolled,setScrolled]=useState(false);useEffect(()=>{const f=()=>setScrolled(scrollY>28);addEventListener("scroll",f,{passive:true});return()=>removeEventListener("scroll",f)},[]);return <header className={`navbar ${scrolled?"is-scrolled":""}`}><Logo/><nav className={open?"open":""}><a href="#cardapio" onClick={()=>setOpen(false)}>Cardápio</a><a href="#local" onClick={()=>setOpen(false)}>Localização</a><a className="nav-order" href="#cardapio" onClick={()=>setOpen(false)}><ShoppingBag/> Pedir</a></nav><button className="nav-toggle" onClick={()=>setOpen(!open)} aria-label={open?"Fechar menu":"Abrir menu"}>{open?<X/>:<Menu/>}</button></header>}
