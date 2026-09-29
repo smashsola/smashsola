@@ -1,0 +1,5 @@
+"use client";
+import { motion, useReducedMotion } from "motion/react";
+import Image from "next/image";
+export interface HeroCard {title:string; subtitle:string; price:string; image:string; imageAlt:string}
+export function Hero08({cards}:{cards:HeroCard[]}){const reduce=useReducedMotion();return <motion.div className="split-cards" initial={reduce?false:"hidden"} whileInView="visible" viewport={{once:true,margin:"-70px"}} variants={{visible:{transition:{staggerChildren:.12}}}}>{cards.map((card,i)=><motion.article className={`menu-card card-${i}`} key={card.title} variants={{hidden:{opacity:0,y:28},visible:{opacity:1,y:0,transition:{duration:.55,ease:[.22,1,.36,1]}}}}><div className="menu-card-photo"><Image src={card.image} alt={card.imageAlt} fill sizes="(max-width: 760px) 100vw, 50vw"/><span>0{i+1}</span></div><div className="menu-card-copy"><small>{card.subtitle}</small><h3>{card.title}</h3><div><strong>{card.price}</strong><button>+ PEDIR</button></div></div></motion.article>)}</motion.div>}
